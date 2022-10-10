@@ -20,7 +20,7 @@
         }
 
         /* collapsed div todo: change css selector*/
-        input[type=checkbox]:checked + label.toggle + div {
+        label.toggle + input[type=checkbox]:checked + div.collapsible {
             max-height: 0;
             transition:  max-height 0.5s ease-out;
         }
@@ -29,7 +29,7 @@
             display: none;
         }
 
-        input[type=checkbox].hidden + label.toggle::before {
+        label.toggle:has( + input[type=checkbox].hidden)::before {
             content:    '';
             display:    inline-block;
             position:    relative;
@@ -38,13 +38,12 @@
             height:     var(--arrow-size);
             background: darkgray;
             --arrow-down: polygon(0 0, 100% 0%, 50% 100%);
-            -webkit-clip-path: var(--arrow-down);
             clip-path:         var(--arrow-down);
             transition: transform 0.5s;
         }
 
         /* todo rotate arrow on collapse */
-        input[type=checkbox].hidden:checked + label.toggle::before {
+        label.toggle:has( + input[type=checkbox]:checked)::before {
             transform: rotate(-90deg);
             transition: transform 0.5s;
         }
@@ -56,13 +55,14 @@
 <p>A section that can be collapsed in pure HTML and CSS.</p>
 
 
-<input id ="toggle" class="hidden" type="checkbox">
 <label for="toggle" class="toggle"> &nbsp; Collapsible Section </label>
-<div class="collapsible">
+<input id ="toggle" class="hidden" type="checkbox">
+<div class="collapsible" >
     <p>collapsible content 1</p>
     <p>collapsible content 2</p>
     <p>collapsible content 3</p>
 </div>
+
 
 <p>
     Some text after the section that flows up when the section is collapsed.
