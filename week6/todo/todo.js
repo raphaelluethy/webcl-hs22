@@ -1,8 +1,8 @@
-import { ObservableList }          from "../observable/observable.js";
-import { Attribute, VALID, VALUE, DIRTY } from "../presentationModel/presentationModel.js";
-import { todoItemProjector }       from "./todoProjector.js";
-import { Scheduler }               from "../dataflow/dataflow.js";
-import { fortuneService }          from "./fortuneService.js";
+import { ObservableList }           from "../observable/observable.js";
+import { Attribute, VALID, VALUE }  from "../presentationModel/presentationModel.js";
+import { todoItemProjector }        from "./todoProjector.js";
+import { Scheduler }                from "../dataflow/dataflow.js";
+import { fortuneService }           from "./fortuneService.js";
 
 export { TodoController, TodoItemsView, TodoTotalView, TodoOpenView}
 
@@ -26,7 +26,6 @@ const TodoController = () => {
             setText:            textAttr.setConvertedValue,
             onTextChanged:      textAttr.getObs(VALUE).onChange,
             onTextValidChanged: textAttr.getObs(VALID).onChange,
-            onTextDirtyChanged: textAttr.getObs(DIRTY).onChange,
             onTextEditableChanged: textAttr.getObs("EDITABLE").onChange,
         }
     };
