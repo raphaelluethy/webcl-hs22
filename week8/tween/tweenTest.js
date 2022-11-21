@@ -13,7 +13,7 @@ tween.test("linear", assert => {
 
 tween.test("section", assert => {
 
-    let [x,y] = interPoint(0, 0)(1, 1)(0.5);
+    const [x,y] = interPoint(0, 0)(1, 1)(0.5);
     assert.is(x, 0.5);
     assert.is(y, 0.5);
 
@@ -25,7 +25,7 @@ tween.test("section", assert => {
 
 tween.test("quadBez", assert => {
 
-    let [x,y] = quadBezier(0,0)(0.5,1)(1,0)(0.5);
+    const [x,y] = quadBezier(0,0)(0.5,1)(1,0)(0.5);
     assert.is(x, 0.5);
     assert.is(y, 0.5);
 
