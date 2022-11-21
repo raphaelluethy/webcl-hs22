@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <title>View</title>
 
@@ -87,22 +87,21 @@
     ];
     pathInfo.forEach( it => {
         it.total = it.path.getTotalLength();
-
+        it.path.style['stroke-dasharray']  = it.total; // dash with full length, followed by equal empty space
+        it.path.style['stroke-dashoffset'] = it.total; // show the empty space
 
     });
 
     const animateStroke = n => fraction => {
         const total = pathInfo[n].total;
-
-
-
+        pathInfo[n].path.style['stroke-dashoffset'] = total * (1-fraction);
     };
 
-
+    const velocity = 15;
     const signature = () => {
-        animate(linear, 500, animateStroke(0),
-            () => animate(linear, 1500, animateStroke(2),
-                () => animate(linear, 1000, animateStroke(1))
+        animate(linear, pathInfo[0].total * velocity , animateStroke(0),
+            () => animate(linear, pathInfo[2].total * velocity, animateStroke(2),
+                () => animate(linear, pathInfo[1].total * velocity, animateStroke(1))
     )   )   };
 
 </script>
