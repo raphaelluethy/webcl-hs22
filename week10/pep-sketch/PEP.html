@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>View</title>
 
@@ -61,14 +61,14 @@
             justify-content: flex-end;
         }
         .week.developer {
-            box-shadow: -.3em 0 1px 0px var(--developer-color),
-                         .3em 0 1px 0px var(--developer-color),
+            box-shadow: -.3em 0 1px 0 var(--developer-color),
+                         .3em 0 1px 0 var(--developer-color),
                         var(--drop-shadow);
             background: var(--developer-color);
         }
         .week.project {
-            box-shadow: -.3em 0 1px 0px var(--project-color),
-                         .3em 0 1px 0px var(--project-color),
+            box-shadow: -.3em 0 1px 0 var(--project-color),
+                         .3em 0 1px 0 var(--project-color),
                         var(--drop-shadow);
             background: var(--project-color);
         }
@@ -132,9 +132,10 @@
 
 <h1>Personaleinsatzplanung</h1>
 
+
 <main>
     <div id="topicsOverWeeks">
-
+<!--
 
         <div class="topic"><div class="header">Dev/Project</div></div>
         <div class="week"><div class="header">Week 1</div></div>
@@ -173,11 +174,12 @@
         <div class="week"></div>
         <div class="week"></div>
 
-
+-->
     </div>
 
 </main>
-<!--
+
+
 <script>
     const weeks = [
         {id: 0, label:'Week 31'},
@@ -231,7 +233,7 @@
     let dragIsOn = false;
     let dragInfo = null; // will be set on drag start
 
-    const finishDrag = evt => {
+    const finishDrag = _evt => {
         if (!dragIsOn) return;
         dragIsOn = false;
         if (dragInfo) dragInfo.presModel[dragInfo.propertyName] =  5 * Math.round(dragInfo.movingValue / 5);
@@ -253,9 +255,7 @@
             return;
         }
     };
-    document.onkeyup = evt => {
-        finishDrag();
-    };
+    document.onkeyup = _evt => finishDrag();
 
     document.onmousemove = evt => {
         if (!dragIsOn) return;
@@ -308,7 +308,7 @@
                 const availElement = dom(`<div class="soll" style="height:${pctScale(avail)};">${avail} %</div>`);
                 weekElement.appendChild(availElement);
 
-                availElement.onmousedown = evt => {
+                availElement.onmousedown = _evt => {
                     if (! dragIsOn) return;
                     dragInfo = {
                         movingValue: avail, // dev is available so many % this week
@@ -360,7 +360,7 @@
                         evt.dataTransfer.setData("text/json", JSON.stringify(assignment))
                     };
 
-                    assignElement.onmousedown = evt => {
+                    assignElement.onmousedown = _evt => {
                         if (!dragIsOn) return;
                         dragInfo = {
                             movingValue: assignment.amount, // dev is available so many % this week
@@ -393,7 +393,7 @@
                 const neededElement = dom(`<div class="soll" style="height:${pctScale(needed)};">${needed / 100} FTEs</div>`);
                 weekElement.appendChild(neededElement);
 
-                neededElement.onmousedown = evt => {
+                neededElement.onmousedown = _evt => {
                     if (!dragIsOn) return;
                     dragInfo = {
                         movingValue: needed, // project needs so many FTEs this week
@@ -450,7 +450,7 @@
 
         const topicsOverWeeks = document.getElementById("topicsOverWeeks");
         topicsOverWeeks.replaceWith(root);
-    }
+    };
 
     render();
 
@@ -459,7 +459,7 @@
 
 
 </script>
--->
+
 
 </body>
 </html>
